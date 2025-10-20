@@ -24,7 +24,12 @@ while True:
 
    if results.multi_hand_landmarks:
        for hand_landmarks in results.multi_hand_landmarks:
-           mp_drawing.draw_landmarks(frame, hand_landmarks, mp_hands.HAND_CONNECTIONS)
+           for landmarks in hand_landmarks.landmark:
+               coord_x , coord_y, coord_z = int(landmarks.x * resolution_x), int(landmarks.y * resolution_y), int(landmarks.z * resolution_x)
+          
+           mp_drawing.draw_landmarks(frame, 
+                                     hand_landmarks, 
+                                     mp_hands.HAND_CONNECTIONS)
 
    print(success)
 
